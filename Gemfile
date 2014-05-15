@@ -34,7 +34,10 @@ end
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'stripe-ruby-mock', '~> 1.10.1.7'
 end
+
+gem 'stripe'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
