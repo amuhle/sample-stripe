@@ -13,7 +13,7 @@ module SampleStripeProject
     # -- all .rb files in that directory are automatically loaded.
     config.generators do |g|
       g.test_framework :minitest
-      g.factory_girl false
+      g.factory_girl true 
     end
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -26,6 +26,3 @@ module SampleStripeProject
 end
 I18n.enforce_available_locales = false
 
-class MiniTest::Unit::TestCase
-  include FactoryGirl::Syntax::Methods
-end

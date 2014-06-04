@@ -38,9 +38,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   #gem 'stripe-ruby-mock', '~> 1.10.1.7'
   gem "minitest-rails"
-  gem 'minitest-colorize'
-  gem 'minitest-focus'
   gem 'minitest-rails-capybara'
+  gem 'minitest-colorize'
 end
 
 gem 'stripe'

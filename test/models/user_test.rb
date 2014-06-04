@@ -1,28 +1,29 @@
 require 'test_helper'
 
-class UserTest < Minitest::Unit::TestCase
-
-  def setup
+describe User do
+  before(:each) do
     DatabaseCleaner.start
-    @user = User.new(email: 'user_test@gmail.com', password: 'password', password_confirmation: 'password')
+    @user = User.new(email: 'user_test@gmail.com', 
+                     password: 'password', 
+                     password_confirmation: 'password')
   end
 
-  def teardown
+  after(:each) do
     @user = nil
     DatabaseCleaner.clean
   end
  
-  def test_invalid_user
+  it "has be an invalid user" do
     @user.email = nil
-    refute @user.valid?
-  end    
-
-  def test_valid_user
-    assert @user.valid?
+    @user.wont_be :valid?, true
   end
 
-  def test_create_user
+  it "has be a valid user" do
+    @user.must_be :valid?, true
+  end
+
+  it "creates a user" do
     @user.save
-    assert @user.id
+    @user.wont_be_nil
   end
 end

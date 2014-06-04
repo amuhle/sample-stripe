@@ -2,30 +2,32 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
+require 'capybara/rails'
+require "database_cleaner"
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
 require "minitest/rails/capybara"
-require "capybara/rails"
-require "database_cleaner"
 
 # Uncomment for awesome colorful output
 require "minitest/pride"
 
-DatabaseCleaner.strategy = :truncation
-
-class ActiveSupport::TestCase
-    ActiveRecord::Migration.check_pending!
-
-  include FactoryGirl::Syntax::Methods
-
-    # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  #
-  # Note: You'll currently still have to declare fixtures explicitly in integration tests
-  # -- they do not yet inherit this setting
-  #fixtures :all
-
-  # Add more helper methods to be used by all tests here...
+class IntegrationTest < MiniTest::Spec
+  include Rails.application.routes.url_helpers
+  include Capybara::DSL
+  register_spec_type(/integration$/, self)
 end
 
+class HelperTest < MiniTest::Spec
+  include ActiveSupport::Testing::SetupAndTeardown
+  include ActionView::TestCase::Behavior
+  register_spec_type(/Helper$/, self)
+end
 
+class ActiveSupport::TestCase
+  ActiveRecord::Migration.check_pending!
+end
+
+class MiniTest::Spec
+  include FactoryGirl::Syntax::Methods
+end

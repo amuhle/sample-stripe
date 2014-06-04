@@ -1,15 +1,12 @@
 require 'test_helper'
 
-class LoginTest < Capybara::Rails::TestCase
-  self.use_transactional_fixtures = false
-
-  def test_access_login_integration
+describe "Login integration" do
+  it "access to sign in page" do
     visit root_path 
-    assert page
-    assert_content "Sign in"
+    page.text.must_include "Sign in"
   end
 
-  def test_login_successful
+  it "log in successful" do
     Capybara.current_driver = :selenium
 
     create(:user) 
@@ -20,6 +17,6 @@ class LoginTest < Capybara::Rails::TestCase
     fill_in "Password", with: "password"
     click_button "Sign in"
 
-    assert_content page, "Home"
+    page.text.must_include "Home"
   end
 end
