@@ -11,7 +11,10 @@ module SampleStripeProject
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    config.generators do |g|
+      g.test_framework :minitest
+      g.factory_girl false
+    end
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
@@ -20,4 +23,9 @@ module SampleStripeProject
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
   end
+end
+I18n.enforce_available_locales = false
+
+class MiniTest::Unit::TestCase
+  include FactoryGirl::Syntax::Methods
 end
