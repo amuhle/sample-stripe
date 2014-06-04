@@ -4,9 +4,6 @@ require "rails/test_help"
 require "minitest/rails"
 require 'capybara/rails'
 require "database_cleaner"
-
-# To add Capybara feature tests add `gem "minitest-rails-capybara"`
-# to the test group in the Gemfile and uncomment the following:
 require "minitest/rails/capybara"
 
 # Uncomment for awesome colorful output
@@ -26,8 +23,14 @@ end
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
+  #Adds context to specs like rspec
+  class << self
+    alias :context :describe
+  end
 end
 
 class MiniTest::Spec
+  #Includes devise and factory_girl helpers
   include FactoryGirl::Syntax::Methods
+  include Devise::TestHelpers
 end

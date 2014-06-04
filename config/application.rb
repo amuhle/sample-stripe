@@ -12,7 +12,7 @@ module SampleStripeProject
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.generators do |g|
-      g.test_framework :minitest
+      g.test_framework :minitest, spec: true
       g.factory_girl true 
     end
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
@@ -25,4 +25,3 @@ module SampleStripeProject
   end
 end
 I18n.enforce_available_locales = false
-
