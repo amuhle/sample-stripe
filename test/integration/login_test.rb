@@ -7,6 +7,7 @@ describe "Login integration" do
   end
   after(:each) do
     DatabaseCleaner.clean
+    Warden.test_reset!
   end
 
   it "access to sign in page" do

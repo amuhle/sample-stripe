@@ -1,5 +1,6 @@
 SampleStripeProject::Application.routes.draw do
-  get "home/index"
+  get "home/index", as: :home
+  get "home/buy/:id" => 'home#buy', as: :buy
   devise_for :users
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

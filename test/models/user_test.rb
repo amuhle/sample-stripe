@@ -13,12 +13,12 @@ describe User do
     DatabaseCleaner.clean
   end
  
-  it "has be an invalid user" do
+  it "has to be an invalid user" do
     @user.email = nil
     @user.wont_be :valid?, true
   end
 
-  it "has be a valid user" do
+  it "has to be a valid user" do
     @user.must_be :valid?, true
   end
 

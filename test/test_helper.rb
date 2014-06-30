@@ -32,5 +32,4 @@ end
 class MiniTest::Spec
   #Includes devise and factory_girl helpers
   include FactoryGirl::Syntax::Methods
-  include Devise::TestHelpers
 end
